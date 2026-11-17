@@ -2,6 +2,9 @@
 
 A fixed-window, source-linked leaderboard for learned image compression.
 
+- **Website:** https://fengyurenpingsheng.github.io/lic-audit/
+- **Paper:** *LIC-Audit: How Comparable Are Reported Gains in Learned Image Compression?* Haisheng Fu, Jie Liang, Runyu Yang, Feng Ding, Xin Dong, Zixiao Jin, Jingning Han. [PDF](paper/LIC-Audit.pdf) (paper and supplementary material)
+
 LIC-Audit keeps BD-rate on PSNR and fixes three things about it: how it is computed (a direct BD-rate over one frozen
 PSNR window per test set), how it is measured (written bits over the original image area, 8-bit RGB PSNR, per-image
 means, all stated), and what evidence a gain needs (a paired interval over the test images when per-image records
