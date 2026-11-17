@@ -1,0 +1,1020 @@
+[
+ {
+  "name": "documented",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "valid",
+  "compatibility": "documented",
+  "issues": []
+ },
+ {
+  "name": "conventions not stated",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "unknown",
+   "rate_accounting": "unknown",
+   "aggregation": "unknown",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "provisional",
+  "compatibility": "provisional",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "psnr_definition"
+   },
+   {
+    "level": "warning",
+    "field": "rate_accounting"
+   },
+   {
+    "level": "warning",
+    "field": "aggregation"
+   }
+  ]
+ },
+ {
+  "name": "one convention stated",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "unknown",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "unknown",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "provisional",
+  "compatibility": "provisional",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "psnr_definition"
+   },
+   {
+    "level": "warning",
+    "field": "aggregation"
+   }
+  ]
+ },
+ {
+  "name": "estimated rate",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "estimated_likelihood",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "provisional",
+  "compatibility": "separate_rate_class",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "rate_accounting"
+   }
+  ]
+ },
+ {
+  "name": "pixel-weighted averaging",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "pixel_weighted",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "provisional",
+  "compatibility": "different_aggregation",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "aggregation"
+   }
+  ]
+ },
+ {
+  "name": "psnr of mean mse",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "psnr_of_mean_mse",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "provisional",
+  "compatibility": "different_aggregation",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "aggregation"
+   }
+  ]
+ },
+ {
+  "name": "luma psnr",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "ycbcr_y",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "incompatible",
+  "compatibility": "incompatible",
+  "issues": [
+   {
+    "level": "incompatible",
+    "field": "psnr_definition"
+   }
+  ]
+ },
+ {
+  "name": "ms-ssim",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "msssim_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "incompatible",
+  "compatibility": "incompatible",
+  "issues": [
+   {
+    "level": "incompatible",
+    "field": "metric"
+   }
+  ]
+ },
+ {
+  "name": "other dataset",
+  "curve": {
+   "dataset": "div2k",
+   "dataset_label": "DIV2K",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "incompatible",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "incompatible",
+    "field": "dataset"
+   }
+  ]
+ },
+ {
+  "name": "wrong split label",
+  "curve": {
+   "dataset": "clic_pv",
+   "dataset_label": "CLIC 2021 test",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "incompatible",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "incompatible",
+    "field": "dataset_label"
+   }
+  ]
+ },
+ {
+  "name": "ambiguous label without evidence",
+  "curve": {
+   "dataset": "clic_pv",
+   "dataset_label": "CLIC",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "incompatible",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "incompatible",
+    "field": "dataset_label"
+   }
+  ]
+ },
+ {
+  "name": "ambiguous label with evidence",
+  "curve": {
+   "dataset": "clic_pv",
+   "dataset_label": "CLIC",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   },
+   "dataset_identity_evidence": "Table 1: CLIC professional validation"
+  },
+  "status": "provisional",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "dataset_label"
+   }
+  ]
+ },
+ {
+  "name": "clic label accepted",
+  "curve": {
+   "dataset": "clic_pv",
+   "dataset_label": "CLIC2020 professional validation",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "valid",
+  "compatibility": "documented",
+  "issues": []
+ },
+ {
+  "name": "tecnick label accepted",
+  "curve": {
+   "dataset": "tecnick",
+   "dataset_label": "Tecnick",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "valid",
+  "compatibility": "documented",
+  "issues": []
+ },
+ {
+  "name": "no label",
+  "curve": {
+   "dataset": "kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "provisional",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "dataset_label"
+   }
+  ]
+ },
+ {
+  "name": "no provenance",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ]
+  },
+  "status": "provisional",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "provenance.repository"
+   },
+   {
+    "level": "warning",
+    "field": "provenance.commit"
+   },
+   {
+    "level": "warning",
+    "field": "provenance.path"
+   }
+  ]
+ },
+ {
+  "name": "short commit",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "a/b",
+    "commit": "abc",
+    "path": "x.json"
+   }
+  },
+  "status": "provisional",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "provenance.commit"
+   }
+  ]
+ },
+ {
+  "name": "one point",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "invalid",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "error",
+    "field": "points"
+   }
+  ]
+ },
+ {
+  "name": "negative rate",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": -0.1,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "invalid",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "error",
+    "field": "points[0].bpp"
+   }
+  ]
+ },
+ {
+  "name": "psnr out of range",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.1,
+     "psnr_db": 9.0
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "invalid",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "error",
+    "field": "points[0].psnr_db"
+   }
+  ]
+ },
+ {
+  "name": "duplicate psnr",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.1,
+     "psnr_db": 30.0
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 30.0
+    },
+    {
+     "bpp": 0.3,
+     "psnr_db": 33.0
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "provisional",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "warning",
+    "field": "points"
+   }
+  ]
+ },
+ {
+  "name": "unknown convention value",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "guessed",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.12,
+     "psnr_db": 29.5
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    },
+    {
+     "bpp": 0.33,
+     "psnr_db": 33.2
+    },
+    {
+     "bpp": 0.55,
+     "psnr_db": 35.3
+    },
+    {
+     "bpp": 0.9,
+     "psnr_db": 37.6
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "invalid",
+  "compatibility": "provisional",
+  "issues": [
+   {
+    "level": "error",
+    "field": "rate_accounting"
+   }
+  ]
+ },
+ {
+  "name": "missing value in a point",
+  "curve": {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.1
+    },
+    {
+     "bpp": 0.2,
+     "psnr_db": 31.4
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/codec",
+    "commit": "0123456789abcdef",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  "status": "invalid",
+  "compatibility": "documented",
+  "issues": [
+   {
+    "level": "error",
+    "field": "points[0]"
+   }
+  ]
+ }
+]

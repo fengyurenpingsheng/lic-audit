@@ -1,0 +1,11 @@
+{
+ "repository": "fengyurenpingsheng/lic-audit",
+ "paper": "",
+ "citation": "",
+ "update_policy": {
+  "review": "once a year, in January",
+  "early_review_records": 10,
+  "major_version_share": 25,
+  "minimum_pairs": 15
+ }
+}

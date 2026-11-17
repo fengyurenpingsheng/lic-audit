@@ -1,0 +1,63 @@
+# A submission arrives as an issue. This workflow answers with the report card, and adds the entry when a maintainer
+# comments /accept. The issue text is passed as data in an environment variable and is never run as a command.
+name: submission
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+permissions:
+  contents: write
+  issues: write
+jobs:
+  report:
+    if: github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements.txt
+      - name: Check the submission
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python tools/issue_to_submission.py --out "$RUNNER_TEMP/submission.json" --comment "$RUNNER_TEMP/comment.md" --online || true
+      - name: Answer on the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+        run: gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body-file "$RUNNER_TEMP/comment.md"
+  accept:
+    if: >-
+      github.event_name == 'issue_comment' && !github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/accept') &&
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association) &&
+      contains(github.event.issue.labels.*.name, 'submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements.txt
+      - name: Add the entry and rebuild the site
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          python tools/issue_to_submission.py --out "$RUNNER_TEMP/submission.json" --comment "$RUNNER_TEMP/comment.md"
+          python tools/accept_submission.py "$RUNNER_TEMP/submission.json" | tee "$RUNNER_TEMP/accept.txt"
+      - name: Commit
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+        run: |
+          git config user.name "lic-audit-bot"
+          git config user.email "lic-audit-bot@users.noreply.github.com"
+          git add submissions/accepted index.html
+          git commit -m "Accept submission from issue #$NUMBER"
+          git push
+      - name: Close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+        run: gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --comment "Accepted. The entry is on the board after the next site build."

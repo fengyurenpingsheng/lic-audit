@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+_site/
+# curves from repositories without a license are never committed
+tests/fixtures/_private/

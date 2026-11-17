@@ -1,0 +1,146 @@
+{
+ "schema_version": 1,
+ "method": {
+  "key": "example-codec",
+  "name": "Example codec (synthetic)",
+  "year": 2027,
+  "venue": "arXiv",
+  "family": "T",
+  "paper_url": "https://example.org/paper",
+  "contact": "authors@example.org"
+ },
+ "curves": [
+  {
+   "dataset": "kodak",
+   "dataset_label": "Kodak",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.1426,
+     "psnr_db": 28.92
+    },
+    {
+     "bpp": 0.1837,
+     "psnr_db": 30.21
+    },
+    {
+     "bpp": 0.2455,
+     "psnr_db": 31.63
+    },
+    {
+     "bpp": 0.334,
+     "psnr_db": 33.08
+    },
+    {
+     "bpp": 0.4785,
+     "psnr_db": 34.71
+    },
+    {
+     "bpp": 0.7123,
+     "psnr_db": 36.44
+    },
+    {
+     "bpp": 1.078,
+     "psnr_db": 38.17
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/example-codec",
+    "commit": "0123456789abcdef0123456789abcdef01234567",
+    "path": "results/kodak.json",
+    "source_tier": "A"
+   }
+  },
+  {
+   "dataset": "tecnick",
+   "dataset_label": "Tecnick",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.1234,
+     "psnr_db": 30.84
+    },
+    {
+     "bpp": 0.1545,
+     "psnr_db": 32.11
+    },
+    {
+     "bpp": 0.2004,
+     "psnr_db": 33.52
+    },
+    {
+     "bpp": 0.2648,
+     "psnr_db": 34.97
+    },
+    {
+     "bpp": 0.3511,
+     "psnr_db": 36.38
+    },
+    {
+     "bpp": 0.4777,
+     "psnr_db": 37.86
+    },
+    {
+     "bpp": 0.6682,
+     "psnr_db": 39.41
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/example-codec",
+    "commit": "0123456789abcdef0123456789abcdef01234567",
+    "path": "results/tecnick.json",
+    "source_tier": "A"
+   }
+  },
+  {
+   "dataset": "clic_pv",
+   "dataset_label": "CLIC2020 professional validation",
+   "metric": "psnr_rgb",
+   "psnr_definition": "rgb_8bit",
+   "rate_accounting": "actual_bitstream",
+   "aggregation": "mean_per_image",
+   "points": [
+    {
+     "bpp": 0.1153,
+     "psnr_db": 30.62
+    },
+    {
+     "bpp": 0.148,
+     "psnr_db": 31.95
+    },
+    {
+     "bpp": 0.1951,
+     "psnr_db": 33.37
+    },
+    {
+     "bpp": 0.2618,
+     "psnr_db": 34.82
+    },
+    {
+     "bpp": 0.3509,
+     "psnr_db": 36.21
+    },
+    {
+     "bpp": 0.4731,
+     "psnr_db": 37.58
+    },
+    {
+     "bpp": 0.6418,
+     "psnr_db": 38.93
+    }
+   ],
+   "provenance": {
+    "repository": "example-org/example-codec",
+    "commit": "0123456789abcdef0123456789abcdef01234567",
+    "path": "results/clic.json",
+    "source_tier": "A"
+   }
+  }
+ ]
+}

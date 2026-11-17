@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIC-Audit Leaderboard</title>
+<meta name="description" content="LIC-Audit: a fixed-window, source-linked leaderboard for learned image compression. Score a method in your browser and see whether a BD-rate gap is large enough to call.">
+<style>
+/*STYLE*/
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#leaderboard" aria-label="LIC-Audit, leaderboard">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <rect x="6" y="3" width="14" height="20" fill="var(--mark)"/>
+        <path d="M6 1v24M20 1v24" stroke="currentColor" stroke-width="2"/>
+        <circle cx="13" cy="13" r="3.4" fill="currentColor"/>
+      </svg>
+      LIC-Audit
+    </a>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" data-view="leaderboard" aria-selected="true">Leaderboard</button>
+      <button role="tab" data-view="compare" aria-selected="false">Compare</button>
+      <button role="tab" data-view="evaluate" aria-selected="false">Evaluate your method</button>
+      <button role="tab" data-view="data" aria-selected="false">Data</button>
+      <button role="tab" data-view="guide" aria-selected="false">User guide</button>
+    </nav>
+    <div class="meta">
+      <span class="ver num" id="ver"></span>
+      <button class="iconbtn" id="theme" type="button" aria-label="Switch between light and dark" title="Switch between light and dark">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===================================================== leaderboard -->
+  <section id="view-leaderboard">
+    <div class="hero home">
+      <div class="hero-main">
+        <h1 class="wordmark">LIC-Audit</h1>
+        <p class="subtitle">How comparable are reported gains in learned image compression?</p>
+        <p class="lead">Every released rate&ndash;distortion curve scored on <b>one fixed quality window per test set</b>, each number linked to its <b>public source</b>, and a clear mark where a gap is <b>too small to call</b>.</p>
+        <div class="btnrow" style="margin-top:20px">
+          <a class="btn" href="#evaluate">Evaluate your method</a>
+          <a class="btn ghost" href="#guide">Read the user guide</a>
+        </div>
+      </div>
+      <div class="hero-facts" id="hero-facts" aria-label="What the board is built from"></div>
+    </div>
+
+    <div class="controls" id="lb-controls">
+      <div class="field"><span>Board</span><div class="seg" id="seg-board" role="group" aria-label="Board"></div></div>
+      <div class="field"><span>Test set</span><div class="seg" id="seg-ds" role="group" aria-label="Test set"></div></div>
+      <div class="field" id="sigma-field"><span>Assumed image-to-image variability
+        <button type="button" class="qmark" id="sigma-help" aria-label="Where this number comes from" title="Where this number comes from">?</button></span>
+        <select id="sigma" aria-label="Assumed image-to-image variability"></select>
+      </div>
+      <label class="field" id="q-field" style="margin-left:auto"><span>Find a method</span><input type="search" id="q" placeholder="Name or year" autocomplete="off" style="width:160px"></label>
+    </div>
+    <p class="board-intro" id="board-intro"></p>
+    <div id="board-main"></div>
+  </section>
+
+  <!-- ===================================================== compare -->
+  <section id="view-compare" hidden>
+    <div class="hero">
+      <h1>Compare two methods</h1>
+      <p class="lead">The direct BD-rate on the fixed window, the range over other ways of computing it, and whether the gap exceeds the margin.</p>
+    </div>
+    <div class="controls">
+      <div class="field"><span>Test set</span><div class="seg" id="cmp-ds" role="group" aria-label="Test set"></div></div>
+      <label class="field"><span>Method</span><select id="cmp-b"></select></label>
+      <button class="btn ghost" id="cmp-swap" type="button" title="Swap the two methods">Swap</button>
+      <label class="field"><span>Baseline</span><select id="cmp-a"></select></label>
+    </div>
+    <div class="section" id="cmp-out"></div>
+  </section>
+
+  <!-- ===================================================== evaluate -->
+  <section id="view-evaluate" hidden>
+    <div class="hero">
+      <h1>Evaluate your method</h1>
+      <p class="lead">Paste the operating points of your method. The score, the position and every comparison are computed in your browser; nothing is uploaded.</p>
+    </div>
+    <div class="steps">
+      <div class="step" id="step1">
+        <div class="n">1</div>
+        <div class="body">
+          <h3>Paste the rate&ndash;distortion points of your method</h3>
+          <p class="sub">For each test set, paste the average rate and PSNR at each operating point. Fill one test set or all three; each is scored on its own.</p>
+          <div id="ev-guide"></div>
+          <div class="dsgrid" id="ev-inputs"></div>
+          <div class="btnrow" style="margin-top:12px">
+            <button class="btn ghost" id="ev-example" type="button">Load the example codec</button>
+            <button class="btn ghost" id="ev-prompt" type="button" title="Copies a prompt that asks an AI assistant to read the points from your paper or repository, with their sources">Copy a prompt for an AI assistant</button>
+            <button class="btn ghost" id="ev-clear" type="button">Clear</button>
+          </div>
+        </div>
+      </div>
+      <div class="step" id="step2">
+        <div class="n">2</div>
+        <div class="body">
+          <h3>Read the result</h3>
+          <p class="sub">Scores are BD-rates against the VTM reference on the fixed window; negative means less rate. The position counts the entries on the board with a better score.</p>
+          <div id="ev-result"></div>
+        </div>
+      </div>
+      <div class="step" id="step3">
+        <div class="n">3</div>
+        <div class="body">
+          <h3>Add per-image records <span class="muted" style="font:400 14px var(--font-text)">optional</span></h3>
+          <p class="sub">With one record per image and operating point, a paired interval over the test images replaces the assumed variability. The comparison uses the eight releases measured from public checkpoints, so measure the same way: bits of the written bitstream over the original image area, PSNR of the 8-bit RGB reconstruction.</p>
+          <div id="ev-perimage"></div>
+        </div>
+      </div>
+      <div class="step" id="step4">
+        <div class="n">4</div>
+        <div class="body">
+          <h3>Submit to the board</h3>
+          <p class="sub">An entry is ranked once its numbers are public: name the repository, the commit and the file that hold them. The check recomputes the score with the reference tool and looks for the numbers at that place.</p>
+          <div id="ev-submit"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== data -->
+  <section id="view-data" hidden>
+    <div class="hero">
+      <h1>All data</h1>
+      <p class="lead">Every curve, claim and measurement behind the board, with its source. Filter it, plot it and download it.</p>
+    </div>
+    <div class="factrow wide sheet" id="data-facts"></div>
+    <div class="controls"><div class="field"><span>Show</span><div class="seg" id="data-tabs" role="group" aria-label="Data set"></div></div></div>
+    <div id="data-main"></div>
+  </section>
+
+  <!-- ===================================================== guide -->
+  <section id="view-guide" hidden>
+    <div class="hero">
+      <h1>User guide</h1>
+      <p class="lead">How to read the board, evaluate a method and join it; which numbers are fixed, which are estimated, and how and when they are updated.</p>
+    </div>
+    <div class="guide">
+      <nav class="toc" id="guide-toc" aria-label="Sections of the guide"></nav>
+      <div class="gbody" id="guide-body"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span id="foot-left"></span>
+    <span id="foot-right"></span>
+  </div>
+</footer>
+
+<div class="tip" id="tip" hidden></div>
+<script id="lic-data" type="application/json">/*DATA*/</script>
+<script>
+/*CORE*/
+</script>
+<script>
+/*APP*/
+</script>
+</body>
+</html>

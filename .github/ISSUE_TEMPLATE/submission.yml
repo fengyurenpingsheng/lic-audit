@@ -1,0 +1,31 @@
+name: Submit a method
+description: Add a method to the LIC-Audit board
+title: "Submission: "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Paste the submission file made on the site (Evaluate a method, step 4). An automatic check recomputes the score with the reference tool and looks for every number at the stated repository, commit and file. A maintainer then accepts the entry.
+  - type: textarea
+    id: submission
+    attributes:
+      label: Submission file
+      description: The JSON from the site. If it is too large to paste, leave this empty and attach the downloaded file under Notes.
+      render: json
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything the maintainers should know. Attach the submission file here if it did not fit above.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: The numbers are public at the stated repository, commit and file, and the board may show them with a link to that source.
+          required: true
