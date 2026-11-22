@@ -27,7 +27,7 @@ var state = {
   claimsDs: 'clic_pv', claimsHover: null,
   cmp: { a: null, b: null },
   mine: { kodak: { text: '' }, tecnick: { text: '' }, clic_pv: { text: '' } },
-  form: { name: '', year: String(new Date().getFullYear()), venue: '', family: '', paper: '', repo: '', commit: '', path: '', contact: '',
+  form: { name: '', year: String(new Date().getFullYear()), venue: '', family: '', paper: '', repo: '', commit: '', path: '', contact: '', weights: '', code: '',
           rate: 'unknown', psnr: 'unknown', agg: 'unknown' },
   data: { ds: 'all', metric: 'all', role: 'all', tier: 'all', where: 'all', q: '', picked: [], tab: 'curves', limit: 40 },
   guide: null

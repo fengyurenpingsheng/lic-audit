@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LIC-Audit Leaderboard</title>
-<meta name="description" content="LIC-Audit: a fixed-window, source-linked leaderboard for learned image compression. Score a method in your browser and see whether a BD-rate gap is large enough to call.">
+<meta name="description" content="LIC-Audit: reported BD-rate gains in learned image compression are hard to compare across papers. LIC-Audit scores every released curve on one fixed quality range against one VTM reference, links each number to its source, and shows when a gap is too small to call.">
 <style>
 /*STYLE*/
 </style>
@@ -45,10 +45,14 @@
       <div class="hero-main">
         <h1 class="wordmark">LIC-Audit</h1>
         <p class="subtitle">How comparable are reported gains in learned image compression?</p>
-        <p class="lead">Every released rate&ndash;distortion curve scored on <b>one fixed quality window per test set</b>, each number linked to its <b>public source</b>, and a clear mark where a gap is <b>too small to call</b>.</p>
+        <div class="intro">
+          <p><b>The problem.</b> Learned image compression (LIC) papers often report BD-rate gains of only a few percent over VTM, and these gains are hard to compare across papers. Different VTM reference runs alone change BD-rates by up to <span class="num" id="hero-spread">3.56</span> percentage points. Papers count bits, compute PSNR and pad images in different and mostly undocumented ways, which can reverse a comparison. And average curves hide how much results vary from image to image, so it is often unclear whether a small gain is statistically significant.</p>
+          <p><b>What LIC-Audit does.</b> It scores every released rate&ndash;distortion curve on one fixed quality range per test set against one fixed VTM reference, links each number to its public source, re-measures public codec releases under common definitions, and marks when a gap is too small to call. You can score your own method in the browser and submit it to the leaderboard.</p>
+        </div>
         <div class="btnrow" style="margin-top:20px">
           <a class="btn" href="#evaluate">Evaluate your method</a>
-          <a class="btn ghost" href="#guide">Read the user guide</a>
+          <a class="btn ghost" id="hero-paper" href="#guide" target="_blank" rel="noopener" hidden>Read the paper on arXiv</a>
+          <button class="btn ghost" id="hero-cite" type="button">How to cite</button>
         </div>
       </div>
       <div class="hero-facts" id="hero-facts" aria-label="What the board is built from"></div>
@@ -123,7 +127,7 @@
         <div class="n">4</div>
         <div class="body">
           <h3>Submit to the board</h3>
-          <p class="sub">An entry is ranked once its numbers are public: name the repository, the commit and the file that hold them. The check recomputes the score with the reference tool and looks for the numbers at that place.</p>
+          <p class="sub">Anyone can add a method. An entry is ranked once its numbers are public: name the repository, the commit and the file that hold them, and the checks below confirm them there.</p>
           <div id="ev-submit"></div>
         </div>
       </div>

@@ -97,6 +97,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .hero h1 { max-width: 18em; }
 .hero .lead { font-size: 18px; line-height: 1.45; max-width: 42em; margin-top: 12px; color: var(--ink-2); }
 .hero .lead b { color: var(--ink); }
+.hero .intro { max-width: 46em; margin-top: 14px; }
+.hero .intro p { font-size: 16.5px; line-height: 1.55; color: var(--ink-2); margin-top: 8px; }
+.hero .intro b { color: var(--ink); }
 .hero.home { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 30px; align-items: end; padding-top: 40px; }
 .wordmark { font: 700 clamp(54px, 8.6vw, 96px)/.92 var(--font-display); letter-spacing: -.035em; }
 .wordmark::after { content: ""; display: block; width: 1.9em; height: .13em; background: var(--mark); margin-top: .12em; }
@@ -376,6 +379,10 @@ tr.focus .sdot { box-shadow: 0 0 0 2px var(--sheet), 0 0 0 4px var(--ink); }
 .gcard { padding: 14px 16px 16px; }
 .gcard.wide { grid-column: 1 / -1; }
 .gcard h4 { margin-bottom: 8px; }
+.checkcard { padding: 14px 18px 12px; margin: 2px 0 18px; max-width: 64em; }
+.checkcard h4 { margin-bottom: 6px; }
+.checkcard ol.seq { max-width: none; margin-bottom: 8px; }
+.checkcard .small { margin: 0; max-width: 60em; }
 .gcard .small { margin-bottom: 8px; }
 ul.ticks { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; }
 ul.ticks li { position: relative; padding-left: 16px; }
@@ -436,7 +443,8 @@ details.faq { border-bottom: 1px solid var(--rule); padding: 12px 0; max-width: 
 details.faq summary { cursor: pointer; font-weight: 700; }
 details.faq p { margin-top: 8px; color: var(--ink-2); }
 code { font: 13px var(--font-mono); background: var(--sheet-2); padding: 1px 5px; border-radius: 3px; }
-pre.cite { background: var(--sheet-2); border: 1px solid var(--rule); border-radius: var(--r-ctl); padding: 12px; font: 12.5px/1.5 var(--font-mono); overflow-x: auto; margin: 8px 0 0; max-width: 46em; }
+pre.cite { background: var(--sheet-2); border: 1px solid var(--rule); border-radius: var(--r-ctl); padding: 12px 14px; font: 12.5px/1.5 var(--font-mono); overflow-x: auto; margin: 8px 0 0; max-width: 62em; white-space: pre-wrap; overflow-wrap: anywhere; }
+pre.cite + .btnrow { margin: 10px 0 14px; }
 
 footer { margin-top: 56px; border-top: 1px solid var(--rule-2); padding: 20px 0 40px; font-size: 13px; color: var(--ink-2); }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between; }

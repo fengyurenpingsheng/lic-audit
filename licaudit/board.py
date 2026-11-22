@@ -249,6 +249,11 @@ def render_markdown(rep: dict) -> str:
         for x in e['issues']:
             L.append(f"- [{x['level']}] `{x['field']}`: {x['message']}")
         L.append('')
+    if m.get('weights_url') or m.get('test_code'):
+        L.append('- Re-measurement requested: ' + '; '.join(x for x in (
+            f"public weights {m['weights_url']}" if m.get('weights_url') else '',
+            f"test code {m['test_code']}" if m.get('test_code') else '') if x)
+            + '. The maintainers can run the model on the fixed test sets; the entry then carries evidence level 4 (re-measured).')
     for n_ in rep.get('notes', []):
         L.append(f'- Note: {n_}')
     L.append('A negative BD-rate means less rate at equal PSNR. A difference within the margin cannot be told from zero with '

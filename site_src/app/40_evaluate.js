@@ -323,6 +323,8 @@ function buildSubmission() {
   var method = { key: slug(f.name) + (f.year && slug(f.name).indexOf(String(f.year)) < 0 ? String(f.year) : ''), name: f.name.trim(), year: Number(f.year) || null, venue: f.venue.trim() || null, family: f.family || 'unknown' };
   if (f.paper.trim()) method.paper_url = f.paper.trim();
   if (f.contact.trim()) method.contact = f.contact.trim();
+  if (f.weights.trim()) method.weights_url = f.weights.trim();
+  if (f.code.trim()) method.test_code = f.code.trim();
   return { schema_version: anyRecords ? 2 : 1, method: method, curves: curves };
 }
 
@@ -341,6 +343,16 @@ function renderSubmit() {
     sel.addEventListener('change', function () { f[key] = sel.value; saveDraft(); DS.forEach(evaluate); renderEvalOutputs(); });
     return h('label', { class: 'field' }, h('span', { text: label }), sel);
   };
+  var li = function (b, t) { return h('li', {}, h('b', { text: b }), ' ' + t); };
+  box.appendChild(h('div', { class: 'sheet checkcard' },
+    h('h4', { text: 'How a submission is checked' }),
+    h('ol', { class: 'seq' },
+      li('Anyone can submit.', 'The button below opens a public GitHub issue, so every submission and its review are visible to everyone.'),
+      li('Source check, automatic.', 'Every number must already be public in your repository, at the commit and in the file you name. A script reads that file and confirms each number, and the reference tool recomputes the score. The report card is posted on the issue.'),
+      li('Consistency check, automatic.', 'Per-image records, if you add them, must reproduce your curve; they also give paired intervals against the measured releases.'),
+      li('Maintainer review.', 'A maintainer confirms that the source names this method and test set, then adds the entry with its evidence level and a link to the source.'),
+      li('Re-measurement, optional.', 'With public weights and test code, the maintainers can run your model on the fixed test sets themselves. The entry then shows the highest evidence level, “Re-measured”.')),
+    h('p', { class: 'small muted', text: 'LIC-Audit does not search the web for results: numbers collected automatically can come from the wrong table, model variant or test set. An AI assistant can help you read your own numbers (“Copy a prompt for an AI assistant” in step 1), but every number is checked at its source before it is listed.' })));
   box.appendChild(h('div', { class: 'formgrid' },
     field('Method name', 'name', { placeholder: 'as in the paper' }), field('Year', 'year', { inputmode: 'numeric' }), field('Venue', 'venue', { placeholder: 'CVPR, arXiv, …' }),
     choice('Main contribution', 'family', [['', 'Choose…'], ['E', 'Entropy model'], ['T', 'Transform'], ['O', 'Overfitted codec'], ['R', 'Rate control and efficiency']]),
@@ -349,7 +361,9 @@ function renderSubmit() {
     choice('The rate is', 'rate', [['unknown', 'not stated'], ['actual_bitstream', 'the written bitstream'], ['estimated_likelihood', 'estimated from likelihoods']]),
     choice('PSNR is', 'psnr', [['unknown', 'not stated'], ['rgb_8bit', 'RGB, 8-bit reconstruction'], ['ycbcr_y', 'luma (Y) only']]),
     choice('Averaging over images', 'agg', [['unknown', 'not stated'], ['mean_per_image', 'mean of per-image bpp and PSNR'], ['psnr_of_mean_mse', 'PSNR of the mean MSE'], ['pixel_weighted', 'pixel-weighted']]),
-    field('Contact for questions', 'contact', { placeholder: 'optional' })));
+    field('Contact for questions', 'contact', { placeholder: 'optional' }),
+    field('Public model weights', 'weights', { type: 'url', placeholder: 'optional: link to the released checkpoint' }),
+    field('Test code or command', 'code', { placeholder: 'optional: repository link or command' })));
   box.appendChild(h('div', { id: 'ev-submit-out', style: 'margin-top:14px' }));
   refreshSubmit();
 }
@@ -370,6 +384,7 @@ function refreshSubmit() {
   else if (compat === 'different_aggregation') notes.push(['warn', 'This averaging rule differs from the mean of per-image values; the curve is scored for diagnosis and is not ranked.']);
   else if (compat === 'provisional') notes.push(['', 'Measurement not fully stated: the entry is ranked with evidence “Curve only”. Stating written bits, 8-bit RGB PSNR and per-image means raises it to “Measurement stated”.']);
   else notes.push(['ok', 'Measurement stated on the common basis: evidence “' + (sub.schema_version === 2 ? 'Per-image records' : 'Measurement stated') + '”.']);
+  if (f.weights.trim()) notes.push(['ok', 'Public weights given: the maintainers can re-measure the model on the fixed test sets. After that the entry shows the evidence level “Re-measured”.']);
   notes.forEach(function (x) { box.appendChild(h('div', { class: 'note ' + x[0], style: 'margin-bottom:8px;max-width:62em', text: x[1] })); });
   var json = JSON.stringify(sub, null, 1), big = json.length > 60000;
   var shown = big ? JSON.stringify(Object.assign({}, sub, { curves: sub.curves.map(function (c) { var o = Object.assign({}, c); if (o.per_image) o.per_image = '[' + c.per_image.length + ' records, included in the file]'; return o; }) }), null, 1) : json;

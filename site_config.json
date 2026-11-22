@@ -1,7 +1,7 @@
 {
  "repository": "fengyurenpingsheng/lic-audit",
- "paper": "https://github.com/fengyurenpingsheng/lic-audit/blob/main/paper/LIC-Audit.pdf",
- "citation": "@misc{fu2026licaudit,\n  title  = {{LIC-Audit}: How Comparable Are Reported Gains in Learned Image Compression?},\n  author = {Fu, Haisheng and Liang, Jie and Yang, Runyu and Ding, Feng and Dong, Xin and Jin, Zixiao and Han, Jingning},\n  year   = {2026},\n  note   = {Code, data and leaderboard: \\url{https://github.com/fengyurenpingsheng/lic-audit}}\n}",
+ "paper": "https://arxiv.org/html/2611.23419v1",
+ "citation": "@article{fu2026licaudit,\n  title   = {{LIC-Audit}: How Comparable Are Reported Gains in Learned Image Compression?},\n  author  = {Fu, Haisheng and Liang, Jie and Yang, Runyu and Ding, Feng and Dong, Xin and Jin, Zixiao and Han, Jingning},\n  journal = {arXiv preprint arXiv:2611.23419},\n  year    = {2026}\n}",
  "update_policy": {
   "review": "once a year, in January",
   "early_review_records": 10,

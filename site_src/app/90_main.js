@@ -67,7 +67,12 @@ function start(saved) {
     root.setAttribute('data-theme', next); store('theme', next);
   });
   $('#foot-left').textContent = 'LIC-Audit protocol v' + P.version + ', frozen on ' + P.frozen_on + '. Every score on this page is computed in your browser by the rules of the reference tool.';
-  if (CFG.paper) $('#foot-right').appendChild(h('a', { href: CFG.paper, target: '_blank', rel: 'noopener', text: 'Paper' }));
+  var spread = Math.max.apply(null, DS.map(function (d) { return (P.reference_spread[d] || {}).max_abs_bd_window || 0; }));
+  if (spread > 0) $('#hero-spread').textContent = spread.toFixed(2);
+  var paperName = /arxiv\.org/i.test(CFG.paper || '') ? 'Paper (arXiv)' : 'Paper';
+  if (CFG.paper) { $('#hero-paper').href = CFG.paper; $('#hero-paper').hidden = false; if (!/arxiv\.org/i.test(CFG.paper)) $('#hero-paper').textContent = 'Read the paper'; }
+  $('#hero-cite').addEventListener('click', function () { go('guide'); setTimeout(function () { var t = document.getElementById('g-cite'); if (t) t.scrollIntoView({ block: 'start' }); }, 60); });
+  if (CFG.paper) $('#foot-right').appendChild(h('a', { href: CFG.paper, target: '_blank', rel: 'noopener', text: paperName }));
   if (CFG.paper && CFG.repository) $('#foot-right').appendChild(document.createTextNode(' \u00b7 '));
   if (CFG.repository) $('#foot-right').appendChild(h('a', { href: 'https://github.com/' + CFG.repository, target: '_blank', rel: 'noopener', text: 'Source, data and reference tool' }));
 

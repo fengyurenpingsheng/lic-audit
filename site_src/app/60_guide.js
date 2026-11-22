@@ -3,7 +3,7 @@
 var GUIDE_SECTIONS = [
   ['g-what', 'What LIC-Audit does'], ['g-read', 'Reading the leaderboard'], ['g-eval', 'Evaluating your method'],
   ['g-join', 'Joining the board'], ['g-params', 'Fixed numbers, estimated numbers and updates'], ['g-images', 'How many test images you need'],
-  ['g-faq', 'Questions'], ['g-cite', 'Version and citation']
+  ['g-faq', 'Questions'], ['g-cite', 'Citation and version']
 ];
 
 function gsec(id, title, kids) { return h('section', { class: 'gsec', id: id }, h('h2', { text: title }), kids); }
@@ -69,12 +69,19 @@ function renderGuide() {
 
   // 4 -----------------------------------------------------------------
   body.appendChild(gsec('g-join', 'Joining the board', [
+    gp('Anyone can add a method, its authors or anyone else. A submission is a short file with the curve and the place where its numbers are public. No model or program has to be sent, and LIC-Audit does not search the web for results.'),
     h('ol', { class: 'seq' },
       h('li', {}, h('b', { text: 'Evaluate' }), ' your method on this site and fill in step 4: name, paper, and how bits and PSNR were measured.'),
       h('li', {}, h('b', { text: 'Publish the numbers' }), ' in your repository and note the commit and the file that hold them.'),
-      h('li', {}, h('b', { text: 'Submit' }), ': the button opens a GitHub issue with the submission file, or add the file to submissions/accepted/ in a pull request.'),
-      h('li', {}, h('b', { text: 'Automatic check' }), ': the reference tool recomputes the score and looks for every number at the stated repository, commit and file. The report card is posted on the issue.'),
+      h('li', {}, h('b', { text: 'Submit' }), ': the button opens a public GitHub issue with the submission file, or add the file to submissions/accepted/ in a pull request.'),
+      h('li', {}, h('b', { text: 'Automatic check' }), ': a script opens the stated file at the stated commit and confirms that every rate and PSNR value appears there, and the reference tool recomputes the score. Per-image records, if given, must reproduce the curve. The report card is posted on the issue.'),
       h('li', {}, h('b', { text: 'Acceptance' }), ': a maintainer confirms that the labels at the source name this method and test set, and the entry appears with its evidence level and source link.')),
+    h('h3', { text: 'How do we know the numbers are real?' }),
+    h('ul', { class: 'ticks' },
+      h('li', {}, h('b', { text: 'Public and pinned.' }), ' Every number must already be public at a fixed commit, so anyone can open the source. A later change to the repository does not change the entry.'),
+      h('li', {}, h('b', { text: 'Checked, not taken on trust.' }), ' The check finds each value at the source and recomputes the score. Numbers that are not found there are not ranked.'),
+      h('li', {}, h('b', { text: 'Evidence shown.' }), ' The evidence level on the board says how far the numbers are confirmed: from a curve at a public commit, to a stated measurement, to per-image records that reproduce the curve.'),
+      h('li', {}, h('b', { text: 'Re-measurement, optional.' }), ' If public weights and test code are linked, the maintainers can run the model on the fixed test sets themselves; the entry then shows the highest level, “' + EVIDENCE[4] + '”. LIC-Audit has already measured ' + REM.releases.length + ' public releases this way (see Data).')),
     gp('Rates estimated from likelihoods and averaging rules other than the mean of per-image values are scored for diagnosis and are not ranked. Luma PSNR and other test-set splits are not accepted. A new entry is scored on the existing window against the existing reference, so it cannot change any existing score.')
   ]));
 
@@ -133,6 +140,9 @@ function renderGuide() {
 
   // 7 -----------------------------------------------------------------
   var faq = [
+    ['Can anyone submit a result? How is it checked?', 'Yes, anyone can. Every number must be public at a pinned commit; the automatic check finds each value there and recomputes the score, and a maintainer reviews the source before the entry is listed. See “Joining the board”.'],
+    ['Do I have to send my model or a program?', 'No. The numbers must be public, and that is enough to be ranked. Linking public weights and test code is optional: it lets the maintainers re-measure the model on the fixed test sets, and the entry then shows “' + EVIDENCE[4] + '”.'],
+    ['Does LIC-Audit collect results from the web by itself?', 'No. Numbers collected automatically can come from the wrong table, model variant or test set. Every entry links to the public file its numbers come from, usually the authors’ own repository, otherwise a marked third-party source. An AI assistant may help read a table, but every number is checked at its source before it is listed.'],
     ['Why is a method listed but not ranked?', 'Its released curve does not reach both ends of the fixed window, and the protocol never extrapolates or narrows the window. One more operating point at the missing end is enough.'],
     ['Why do some entries have no curve in the plots?', 'Their source repository carries no license, so the board shows the score computed from the curve and links to the file, but does not copy the values. Authors can submit their own curve to have it shown.'],
     ['Why is the reference a mean of several VTM runs?', 'Released VTM runs differ by up to ' + Math.max.apply(null, DS.map(function (d) { return P.reference_spread[d].max_abs_bd_window || 0; })).toFixed(1) + ' BD-rate points on the same window. A fixed mean keeps scores stable; direct comparisons between methods do not depend on it at all.'],
@@ -144,10 +154,12 @@ function renderGuide() {
 
   // 8 -----------------------------------------------------------------
   var eng = P.engine_sha256 || {};
-  body.appendChild(gsec('g-cite', 'Version and citation', [
-    gp('Protocol v' + P.version + ', frozen on ' + P.frozen_on + '. Reference engine files (SHA-256): ' + Object.keys(eng).map(function (k) { return k + ' ' + eng[k].slice(0, 12); }).join(', ') + '.'),
-    CFG.paper ? h('p', {}, 'Paper: ', h('a', { href: CFG.paper, target: '_blank', rel: 'noopener', text: CFG.paper })) : null,
-    CFG.citation ? h('pre', { class: 'cite', text: CFG.citation }) : gp('The citation appears here once the paper is public.')
+  var onArxiv = /arxiv\.org/i.test(CFG.paper || '');
+  body.appendChild(gsec('g-cite', 'Citation and version', [
+    CFG.paper ? h('p', {}, 'If you use LIC-Audit or its leaderboard, please cite the paper' + (onArxiv ? ' on arXiv' : '') + ': ', h('a', { href: CFG.paper, target: '_blank', rel: 'noopener', text: CFG.paper })) : null,
+    CFG.citation ? h('pre', { class: 'cite', text: CFG.citation }) : gp('The citation appears here once the paper is public.'),
+    CFG.citation ? h('div', { class: 'btnrow' }, h('button', { class: 'btn ghost', type: 'button', text: 'Copy BibTeX', onclick: function () { copyText(CFG.citation, 'BibTeX copied.'); } })) : null,
+    gp('Protocol v' + P.version + ', frozen on ' + P.frozen_on + '. Reference engine files (SHA-256): ' + Object.keys(eng).map(function (k) { return k + ' ' + eng[k].slice(0, 12); }).join(', ') + '.')
   ]));
   guideSpy();
 }

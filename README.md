@@ -3,7 +3,33 @@
 A fixed-window, source-linked leaderboard for learned image compression.
 
 - **Website:** https://fengyurenpingsheng.github.io/lic-audit/
-- **Paper:** *LIC-Audit: How Comparable Are Reported Gains in Learned Image Compression?* Haisheng Fu, Jie Liang, Runyu Yang, Feng Ding, Xin Dong, Zixiao Jin, Jingning Han. [PDF](paper/LIC-Audit.pdf) (paper and supplementary material)
+- **Paper:** *LIC-Audit: How Comparable Are Reported Gains in Learned Image Compression?* Haisheng Fu, Jie Liang, Runyu Yang, Feng Ding, Xin Dong, Zixiao Jin, Jingning Han. arXiv:2611.23419, 2026. https://arxiv.org/html/2611.23419v1
+
+**The problem.** Learned image compression (LIC) papers often report BD-rate gains of only a few percent over VTM, and
+these gains are hard to compare across papers. Different VTM reference runs alone change BD-rates by up to 3.56
+percentage points. Papers count bits, compute PSNR and pad images in different and mostly undocumented ways, which can
+reverse a comparison. And average curves hide how much results vary from image to image, so it is often unclear whether
+a small gain is statistically significant.
+
+**What LIC-Audit does.** It scores every released rate-distortion curve on one fixed quality range per test set against
+one fixed VTM reference, links each number to its public source, re-measures public codec releases under common
+definitions, and marks when a gap is too small to call. Anyone can score a method in the browser and submit it to the
+leaderboard.
+
+## Citation
+
+If you use LIC-Audit or its leaderboard, please cite the paper:
+
+```bibtex
+@article{fu2026licaudit,
+  title   = {{LIC-Audit}: How Comparable Are Reported Gains in Learned Image Compression?},
+  author  = {Fu, Haisheng and Liang, Jie and Yang, Runyu and Ding, Feng and Dong, Xin and Jin, Zixiao and Han, Jingning},
+  journal = {arXiv preprint arXiv:2611.23419},
+  year    = {2026}
+}
+```
+
+## How it works
 
 LIC-Audit keeps BD-rate on PSNR and fixes three things about it: how it is computed (a direct BD-rate over one frozen
 PSNR window per test set), how it is measured (written bits over the original image area, 8-bit RGB PSNR, per-image
@@ -22,14 +48,26 @@ The site is one file, `index.html`. It needs no server and makes no network requ
 
 ## Add your method
 
-1. Open the site, choose **Evaluate a method**, and paste the operating points (bits per pixel, PSNR in dB) for one or
-   more test sets. The score and position appear at once.
-2. Publish the numbers in your repository and note the commit and the file that hold them.
-3. Fill in step 4 on the site and open a submission (the button creates a GitHub issue with the file), or open a pull
-   request that adds the file to `submissions/accepted/`.
+Anyone can add a method, its authors or anyone else.
 
-An automatic check recomputes the score with the reference tool and looks for every number at the stated source. A
-maintainer then accepts the entry. A curve must span the fixed window of its test set; the protocol never extrapolates.
+1. Open the site, choose **Evaluate your method**, and paste the operating points (bits per pixel, PSNR in dB) for one
+   or more test sets. The score and position appear at once.
+2. Publish the numbers in your repository and note the commit and the file that hold them.
+3. Fill in step 4 on the site and open a submission (the button creates a public GitHub issue with the file), or open a
+   pull request that adds the file to `submissions/accepted/`.
+
+How a submission is checked:
+
+- **Source check (automatic).** A script opens the stated file at the stated commit and confirms that every rate and
+  PSNR value appears there, and the reference tool recomputes the score. The report card is posted on the issue.
+- **Consistency check (automatic).** Per-image records, if given, must reproduce the curve.
+- **Maintainer review.** A maintainer confirms that the source names this method and test set, then accepts the entry
+  with its evidence level and a link to the source.
+- **Re-measurement (optional).** No model or program has to be sent. If public weights and test code are linked, the
+  maintainers can run the model on the fixed test sets themselves, and the entry then carries evidence level 4.
+
+LIC-Audit does not search the web for results: numbers collected automatically can come from the wrong table, model
+variant or test set. A curve must span the fixed window of its test set; the protocol never extrapolates.
 
 Evidence levels: **1** a numeric curve at a pinned public commit; **2** with a stated measurement profile on the common
 basis; **3** with per-image records that reproduce the curve; **4** measured by the maintainers from the public checkpoint.

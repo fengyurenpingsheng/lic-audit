@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Paste the submission file made on the site (Evaluate a method, step 4). An automatic check recomputes the score with the reference tool and looks for every number at the stated repository, commit and file. A maintainer then accepts the entry.
+        Paste the submission file made on the site (Evaluate your method, step 4). An automatic check looks for every number at the stated repository, commit and file and recomputes the score with the reference tool; the report card is posted here. A maintainer then reviews the source and accepts the entry. Public weights and test code are optional; with them the maintainers can re-measure the model.
   - type: textarea
     id: submission
     attributes:
