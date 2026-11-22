@@ -3235,12 +3235,12 @@ function renderGuide() {
       h('li', {}, h('b', { text: 'Submit' }), ': the button opens a public GitHub issue with the submission file, or add the file to submissions/accepted/ in a pull request.'),
       h('li', {}, h('b', { text: 'Automatic check' }), ': a script opens the stated file at the stated commit and confirms that every rate and PSNR value appears there, and the reference tool recomputes the score. Per-image records, if given, must reproduce the curve. The report card is posted on the issue.'),
       h('li', {}, h('b', { text: 'Acceptance' }), ': a maintainer confirms that the labels at the source name this method and test set, and the entry appears with its evidence level and source link.')),
-    h('h3', { text: 'How do we know the numbers are real?' }),
+    h('h3', { text: 'How are the numbers checked?' }),
     h('ul', { class: 'ticks' },
       h('li', {}, h('b', { text: 'Public and pinned.' }), ' Every number must already be public at a fixed commit, so anyone can open the source. A later change to the repository does not change the entry.'),
-      h('li', {}, h('b', { text: 'Checked, not taken on trust.' }), ' The check finds each value at the source and recomputes the score. Numbers that are not found there are not ranked.'),
-      h('li', {}, h('b', { text: 'Evidence shown.' }), ' The evidence level on the board says how far the numbers are confirmed: from a curve at a public commit, to a stated measurement, to per-image records that reproduce the curve.'),
-      h('li', {}, h('b', { text: 'Re-measurement, optional.' }), ' If public weights and test code are linked, the maintainers can run the model on the fixed test sets themselves; the entry then shows the highest level, “' + EVIDENCE[4] + '”. LIC-Audit has already measured ' + REM.releases.length + ' public releases this way (see Data).')),
+      h('li', {}, h('b', { text: 'Checked at the source.' }), ' The check finds each value in the stated file and recomputes the score; numbers that are not found there are not ranked. This confirms that the numbers are the ones the authors released, copied correctly.'),
+      h('li', {}, h('b', { text: 'Re-measured when possible.' }), ' Only running the model tests the numbers themselves. If public weights and test code are linked, the maintainers can run the model on the fixed test sets; the entry then shows the highest level, “' + EVIDENCE[4] + '”. LIC-Audit has already measured ' + REM.releases.length + ' public releases this way (see Data).'),
+      h('li', {}, h('b', { text: 'Evidence shown.' }), ' The evidence level on the board says which checks an entry has passed: a curve at a public commit, a stated measurement, per-image records that reproduce the curve, or a re-measurement.')),
     gp('Rates estimated from likelihoods and averaging rules other than the mean of per-image values are scored for diagnosis and are not ranked. Luma PSNR and other test-set splits are not accepted. A new entry is scored on the existing window against the existing reference, so it cannot change any existing score.')
   ]));
 
